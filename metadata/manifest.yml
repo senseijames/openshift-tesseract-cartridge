@@ -1,0 +1,11 @@
+Name: tesseract
+Cartridge-Short-Name: TESSERACT
+Display-Name: OpenShift Cartridge Development Kit
+Version: "1.0"
+Website: https://github.com/syntaxsugar/openshift-tesseract-cartridge
+Cartridge-Version: 0.1.0
+Cartridge-Vendor: foobar
+Categories:
+  - service
+Provides:
+  - "tesseract"

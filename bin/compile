@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# usage: bin/compile <build-dir>
+
+# build libtool
+cd /tmp
+rm libtool-2.4.2.tar.gz 
+wget  http://ftpmirror.gnu.org/libtool/libtool-2.4.2.tar.gz 
+tar xfz libtool-2.4.2.tar.gz 
+cd libtool-2.4.2 
+./configure --prefix=/usr
+make
+make install
+
+BUILD_DIR=$1
+TESSERACT_OCR_VERSION=3.02.02
+TESSERACT_OCR_DATA_VERSION=3.02
+TESSERACT_OCR_REMOTE=https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.02.tar.gz
+
+INSTALL_DIR=$BUILD_DIR/vendor/tesseract-ocr/
+INSTALL_DIR_TRAINING_DATA=$BUILD_DIR/vendor/
+TESSERACT_OCR_DIR=${HOME}/vendor/tesseract-ocr
+ENVSCRIPT=$BUILD_DIR/.profile.d/tesseract-ocr.sh
+
+
+echo 'Getting Tesseract-ocr Binaries'
+mkdir -p $INSTALL_DIR
+curl $TESSERACT_OCR_REMOTE -o - | tar -xz -C $INSTALL_DIR -f -
+
+echo 'Getting tesseract-ocr training data'
+echo 'English training data'
+curl https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSERACT_OCR_DATA_VERSION.eng.tar.gz \
+  -o - | tar -xz -C $INSTALL_DIR_TRAINING_DATA -f -
+if [ $TESSERACT_OCR_LANGUAGES ]
+then
+   array=(${TESSERACT_OCR_LANGUAGES//,/ })
+   for i in "${!array[@]}"
+   do
+     lang="${array[i]}"
+     echo $lang 'training data'
+     echo https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSERACT_OCR_DATA_VERSION.$lang.tar.gz
+     curl https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSERACT_OCR_DATA_VERSION.$lang.tar.gz \
+  -o - | tar -xz -C $INSTALL_DIR_TRAINING_DATA -f -
+
+   done
+fi
+echo "Building runtime environment for tesseract-ocr"
+mkdir -p $BUILD_DIR/.profile.d
+echo "export PATH=\"$TESSERACT_OCR_DIR/bin:\$PATH\"" > $ENVSCRIPT
+echo "export LD_LIBRARY_PATH=\"$TESSERACT_OCR_DIR/lib:\$LD_LIBRARY_PATH\"" >> $ENVSCRIPT
+echo "export TESSDATA_PREFIX=\"$TESSERACT_OCR_DIR/\"" >> $ENVSCRIPT
+
