@@ -3,6 +3,7 @@ Cartridge-Short-Name: TESSERACT
 Display-Name: OpenShift Cartridge Development Kit
 Version: "1.0"
 Website: https://github.com/syntaxsugar/openshift-tesseract-cartridge
+Source-Url: git@github.com/syntaxsugar/openshift-tesseract-cartridge.git
 Cartridge-Version: 0.1.0
 Cartridge-Vendor: foobar
 Categories:
