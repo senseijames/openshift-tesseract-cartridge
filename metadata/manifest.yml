@@ -5,7 +5,7 @@ Version: "0.1"
 Website: https://github.com/senseijames/openshift-tesseract-cartridge
 Source-Url: https://github.com/senseijames/openshift-tesseract-cartridge/archive/master.zip
 Cartridge-Version: 0.1.0
-Cartridge-Vendor: Gi
+Cartridge-Vendor: "Sensei James"
 Categories:
   - service
 Provides:
