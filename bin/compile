@@ -22,16 +22,11 @@ INSTALL_DIR_TRAINING_DATA=$BUILD_DIR/vendor/
 TESSERACT_OCR_DIR=${HOME}/vendor/tesseract-ocr
 ENVSCRIPT=$BUILD_DIR/.profile.d/tesseract-ocr.sh
 
-TESSERACT_OCR_LANGUAGES=ces
+TESSERACT_OCR_LANGUAGES=
 
 echo 'Getting Tesseract-ocr Binaries'
 mkdir -p $INSTALL_DIR
 curl $TESSERACT_OCR_REMOTE -o - | tar -xz -C $INSTALL_DIR -f -
-
-echo 'Getting tesseract-ocr training data'
-echo 'English training data'
-curl https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSERACT_OCR_DATA_VERSION.eng.tar.gz \
-  -o - | tar -xz -C $INSTALL_DIR_TRAINING_DATA -f -
 
 if [ $TESSERACT_OCR_LANGUAGES ]
 then
