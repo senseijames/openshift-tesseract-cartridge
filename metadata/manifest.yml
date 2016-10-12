@@ -1,10 +1,10 @@
 Name: tesseract
 Cartridge-Short-Name: TESSERACT
 Display-Name: Tesseract OCR OpenShift Cartridge
-Version: "0.1"
+Version: "0.2"
 Website: https://github.com/senseijames/openshift-tesseract-cartridge
 Source-Url: https://github.com/senseijames/openshift-tesseract-cartridge/archive/master.zip
-Cartridge-Version: 0.1.0
+Cartridge-Version: 0.2.0
 Cartridge-Vendor: senseijames
 Categories:
   - service
