@@ -12,7 +12,7 @@ cd libtool-2.4.2
 make
 make install
 
-BUILD_DIR=$1
+BUILD_DIR=~/cartridges
 TESSERACT_OCR_VERSION=3.02.02
 TESSERACT_OCR_DATA_VERSION=3.02
 TESSERACT_OCR_REMOTE=https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.02.tar.gz
